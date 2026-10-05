@@ -1,0 +1,29 @@
+name: ✨ Feature request / Özellik isteği
+description: Suggest a new tool, component type, chart overlay or prompt. / Yeni bir araç, bileşen, grafik katmanı veya prompt önerin.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Sorun
+      description: What RF/microwave task are you trying to do? / Hangi RF/mikrodalga işini yapmaya çalışıyorsunuz?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution / Önerilen çözüm
+      description: Tool name, inputs and outputs you would expect. / Beklediğiniz araç adı, girdiler ve çıktılar.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References / Kaynaklar
+      description: Formulas, textbook sections (e.g. Pozar §5.5), papers or application notes.
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution / Katkı
+      options:
+        - label: I would like to open a pull request for this. / Bunun için PR açmak isterim.

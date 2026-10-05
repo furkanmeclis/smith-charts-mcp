@@ -1,0 +1,77 @@
+name: 🐞 Bug report / Hata bildirimi
+description: A tool returns a wrong value, an error, or the chart looks wrong. / Bir araç yanlış değer veya hata döndürüyor ya da grafik hatalı.
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem! Please include the exact tool call so we can reproduce it.
+        Hata bildirdiğiniz için teşekkürler! Sorunu tekrarlayabilmemiz için araç çağrısını olduğu gibi ekleyin.
+  - type: input
+    id: version
+    attributes:
+      label: Version / Sürüm
+      description: Output of the `version_info` tool or `smith-charts-mcp --version`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: transport
+    attributes:
+      label: How do you run it? / Nasıl çalıştırıyorsunuz?
+      options:
+        - stdio (Claude Desktop / Claude Code / Cursor …)
+        - Streamable HTTP (self-hosted / Docker)
+        - Public endpoint (smith-charts-mcp.technowide.software)
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: MCP client / İstemci
+      placeholder: "Claude Desktop 1.x, Claude iOS, Cursor …"
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Tool / Araç
+      options:
+        - impedance_convert
+        - tline_input_impedance
+        - analyze_circuit
+        - design_l_match
+        - design_pi_t_match
+        - design_stub_match
+        - design_quarter_wave
+        - parse_touchstone
+        - amplifier_stability
+        - gain_circles
+        - noise_circles
+        - conjugate_match
+        - render_smith_chart
+        - version_info
+        - prompt / resource
+        - other / diğer
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Tool arguments / Araç argümanları
+      description: The JSON arguments that were sent to the tool.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened? / Ne oldu?
+      description: Paste the tool output or attach the chart image.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect? / Ne bekliyordunuz?
+      description: For calculation bugs, include the expected value and its source (textbook, simulator, measurement).
+    validations:
+      required: true

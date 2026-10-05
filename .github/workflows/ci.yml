@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Test
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Smoke test CLI
+        run: node dist/index.js --version
+
+  docker:
+    name: Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t smith-charts-mcp:ci .
+      - name: Smoke test HTTP endpoint
+        run: |
+          docker run -d --name smcp -p 3000:3000 smith-charts-mcp:ci
+          for i in $(seq 1 20); do curl -fs http://localhost:3000/health && break; sleep 1; done
+          tools=$(curl -fs http://localhost:3000/mcp \
+            -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | jq '.result.tools | length')
+          echo "tools: $tools"
+          test "$tools" -ge 14
+          png=$(curl -fs http://localhost:3000/mcp \
+            -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
+            -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"render_smith_chart","arguments":{"points":[{"z":"25-j15"}],"png_scale":1}}}' \
+            | jq -r '.result.content[] | select(.type=="image") | .mimeType')
+          test "$png" = "image/png"
+      - name: Container logs
+        if: always()
+        run: docker logs smcp || true
