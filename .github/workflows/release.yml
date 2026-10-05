@@ -85,7 +85,7 @@ jobs:
           labels: |
             org.opencontainers.image.title=smith-charts-mcp
             org.opencontainers.image.description=MCP server for Smith charts, impedance matching and S-parameter analysis
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64,linux/arm64
