@@ -1,12 +1,12 @@
 # syntax=docker/dockerfile:1
-FROM node:22-slim AS build
+FROM node:26-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json tsconfig.json ./
 RUN npm ci --ignore-scripts
 COPY src ./src
 RUN npx tsc -p .
 
-FROM node:22-slim
+FROM node:26-slim
 # fonts for PNG text rendering (resvg uses system fonts)
 RUN apt-get update && apt-get install -y --no-install-recommends fonts-dejavu-core \
  && rm -rf /var/lib/apt/lists/*
