@@ -1,0 +1,121 @@
+{
+  "name": "smith-charts-mcp",
+  "version": "0.1.0",
+  "description": "Lightweight Model Context Protocol (MCP) server for RF & microwave engineering: Smith chart rendering, impedance / VSWR / reflection-coefficient conversion, transmission-line and ladder-circuit analysis, L / Pi / T / single-stub / quarter-wave impedance matching synthesis, Touchstone (.s1p/.s2p) S-parameter parsing, amplifier stability (K, Δ, μ), gain, noise and stability circles and simultaneous conjugate matching. English & Turkish output. Runs over stdio or Streamable HTTP (remote / mobile).",
+  "type": "module",
+  "bin": {
+    "smith-charts-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./server": "./dist/server.js",
+    "./core/*": "./dist/core/*.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.tr.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc -p . && node -e \"require('fs').chmodSync('dist/index.js',0o755)\"",
+    "dev": "node src/index.ts",
+    "dev:http": "node src/index.ts --http",
+    "start": "node dist/index.js",
+    "start:http": "node dist/index.js --http",
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc -p . --noEmit",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js",
+    "gen:qr": "node scripts/generate-qr.ts",
+    "changelog": "node scripts/sync-changelog.ts",
+    "docker:build": "docker build -t smith-charts-mcp .",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "modelcontextprotocol",
+    "mobile",
+    "remote-mcp",
+    "streamable-http",
+    "claude",
+    "claude-desktop",
+    "claude-code",
+    "cursor",
+    "llm-tools",
+    "ai-tools",
+    "smith-chart",
+    "smith-diagram",
+    "rf",
+    "rf-engineering",
+    "rf-design",
+    "microwave",
+    "microwave-engineering",
+    "microwave-theory",
+    "electrical-engineering",
+    "electronics",
+    "antenna",
+    "antenna-tuning",
+    "impedance",
+    "impedance-matching",
+    "matching-network",
+    "l-network",
+    "pi-network",
+    "t-network",
+    "stub-matching",
+    "single-stub",
+    "quarter-wave-transformer",
+    "transmission-line",
+    "vswr",
+    "return-loss",
+    "reflection-coefficient",
+    "admittance",
+    "s-parameters",
+    "touchstone",
+    "s1p",
+    "s2p",
+    "vna",
+    "amplifier-design",
+    "lna",
+    "stability-circles",
+    "gain-circles",
+    "noise-circles",
+    "noise-figure",
+    "conjugate-match",
+    "rollett-k-factor",
+    "e-series",
+    "education",
+    "turkish"
+  ],
+  "author": "Furkan Meclis <furkanmeclis@icloud.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/furkanmeclis/smith-charts-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furkanmeclis/smith-charts-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/furkanmeclis/smith-charts-mcp/issues"
+  },
+  "mcpName": "io.github.furkanmeclis/smith-charts-mcp",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^4.6.5"
+  },
+  "optionalDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "@types/qrcode": "^1.5.6",
+    "jsqr": "^1.4.0",
+    "qrcode": "^1.5.4",
+    "typescript": "^7.0.2"
+  }
+}

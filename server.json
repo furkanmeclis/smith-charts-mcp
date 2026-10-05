@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.furkanmeclis/smith-charts-mcp",
+  "title": "Smith Charts MCP",
+  "description": "RF & microwave toolkit: Smith charts, impedance matching (L/Pi/T/stub/λ/4), S-parameters, stability, gain & noise circles.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/furkanmeclis/smith-charts-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "smith-charts-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SMITH_CHARTS_MCP_LANG",
+          "description": "Default summary language: en or tr",
+          "isRequired": false,
+          "default": "en"
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://smith-chart-mcp.technowide.software/mcp"
+    }
+  ]
+}

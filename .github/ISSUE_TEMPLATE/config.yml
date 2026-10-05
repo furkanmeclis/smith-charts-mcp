@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Security vulnerability / Güvenlik açığı
+    url: https://github.com/furkanmeclis/smith-charts-mcp/security/advisories/new
+    about: Please report security issues privately. / Güvenlik sorunlarını lütfen gizli olarak bildirin.
+  - name: 📖 Formula sheet / Formül kartı
+    url: https://github.com/furkanmeclis/smith-charts-mcp#resources
+    about: Reference formulas used by the tools (also available as the smith://docs/formulas resource).
