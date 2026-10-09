@@ -7,7 +7,10 @@
   <img src="https://img.shields.io/badge/node-%E2%89%A520-339933?logo=node.js&logoColor=white" alt="Node ≥ 20">
   <img src="https://img.shields.io/badge/MCP-stdio%20%7C%20Streamable%20HTTP-6E56CF" alt="MCP transports">
   <a href="LICENSE"><img src="https://img.shields.io/github/license/furkanmeclis/smith-charts-mcp" alt="MIT license"></a>
+
 </p>
+
+[![M8ven Score](https://m8ven.ai/badge/mcp/furkanmeclis-smith-charts-mcp-1q4zdv?v=4a290f2bbfadcd8db9dc822752552aa5)](https://m8ven.ai/mcp/furkanmeclis-smith-charts-mcp-1q4zdv?s=readme)
 
 **A lightweight [Model Context Protocol](https://modelcontextprotocol.io) server for RF & microwave engineering, built around the Smith chart.**
 
